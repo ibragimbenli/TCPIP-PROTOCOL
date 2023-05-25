@@ -16,10 +16,6 @@ namespace TCPIP_PROTOCOL
 {
     public partial class Form1 : Form
     {
-        TcpClient clientSocket = new TcpClient();
-        NetworkStream serverStream = default(NetworkStream);
-        string readdata = null;
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -29,12 +25,15 @@ namespace TCPIP_PROTOCOL
             InitializeComponent();
         }
 
+        TcpClient clientSocket = new TcpClient();
+        NetworkStream serverStream = default(NetworkStream);
+        string readdata = null;
+
         private void btnConnect_Click(object sender, EventArgs e)
         {
             clientSocket.Connect(txtIpAdres.Text, Int32.Parse(txtPort.Text));
             Thread ctThread = new Thread(getMessage);
             ctThread.Start();
-
         }
         private void getMessage()
         {
@@ -42,7 +41,6 @@ namespace TCPIP_PROTOCOL
             string returndata;
             while (true)
             {
-
                 serverStream = clientSocket.GetStream();
                 var buffSize = clientSocket.ReceiveBufferSize;
                 byte[] instream = new byte[buffSize];
@@ -54,11 +52,9 @@ namespace TCPIP_PROTOCOL
                 readdata += returndata;
                 msg();
             }
-
         }
         private void msg()
         {
-
             if (this.InvokeRequired)
             {
                 this.Invoke(new MethodInvoker(msg));
@@ -66,7 +62,6 @@ namespace TCPIP_PROTOCOL
             else
             {
                 txtInMessage.Text = readdata;
-               
             }
         }
 
