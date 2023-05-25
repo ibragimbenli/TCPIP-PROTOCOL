@@ -75,14 +75,6 @@ namespace TCPIP_PROTOCOL
             serverStream.Write(outstream, 0, outstream.Length);
             serverStream.Flush();
         }
-        private void DosyaVeriYaz(string data)
-        {
-            StreamWriter sw = new StreamWriter(@"C:\Users\ibrahim.benli\Desktop\test.txt");
-            sw.WriteLine("n/"+ readdata);
-            sw.Close();
-            txtInMessage.Clear();
-        }
-
     }
 }
 
