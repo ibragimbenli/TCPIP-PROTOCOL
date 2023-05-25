@@ -39,6 +39,7 @@
             this.txtInMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnGetIp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -150,11 +151,22 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Time";
             // 
+            // btnGetIp
+            // 
+            this.btnGetIp.Location = new System.Drawing.Point(319, 199);
+            this.btnGetIp.Name = "btnGetIp";
+            this.btnGetIp.Size = new System.Drawing.Size(80, 49);
+            this.btnGetIp.TabIndex = 6;
+            this.btnGetIp.Text = "IP GETİR";
+            this.btnGetIp.UseVisualStyleBackColor = true;
+            this.btnGetIp.Click += new System.EventHandler(this.btnGetIp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 600);
+            this.Controls.Add(this.btnGetIp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnConnect);
@@ -188,6 +200,7 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox txtInMessage;
+        private System.Windows.Forms.Button btnGetIp;
     }
 }
 

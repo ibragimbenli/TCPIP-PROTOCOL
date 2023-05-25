@@ -11,19 +11,14 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Drawing.Text;
 using System.IO;
+using System.Net;
 
 namespace TCPIP_PROTOCOL
 {
     public partial class Form1 : Form
     {
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        private void Form1_Load(object sender, EventArgs e){}
+        public Form1(){InitializeComponent();}
 
         TcpClient clientSocket = new TcpClient();
         NetworkStream serverStream = default(NetworkStream);
@@ -45,7 +40,6 @@ namespace TCPIP_PROTOCOL
                 var buffSize = clientSocket.ReceiveBufferSize;
                 byte[] instream = new byte[buffSize];
 
-
                 serverStream.Read(instream, 0, buffSize);
 
                 returndata = Encoding.ASCII.GetString(instream);
@@ -64,7 +58,6 @@ namespace TCPIP_PROTOCOL
                 txtInMessage.Text = readdata;
             }
         }
-
         private void btnSend_Click(object sender, EventArgs e)
         {
             MultiPlexer();
@@ -74,6 +67,16 @@ namespace TCPIP_PROTOCOL
             byte[] outstream = Encoding.ASCII.GetBytes(txtOutMessage.Text);
             serverStream.Write(outstream, 0, outstream.Length);
             serverStream.Flush();
+        }
+
+        private void btnGetIp_Click(object sender, EventArgs e)
+        {
+            txtInMessage.Text = string.Empty;
+            string hostName = Dns.GetHostName();
+            //txtInMessage.Text = hostName;
+
+            string myIp = Dns.GetHostByName(hostName).AddressList[0].ToString();
+            txtInMessage.Text += myIp;
         }
     }
 }
